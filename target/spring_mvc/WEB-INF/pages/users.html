@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+
+</head>
+<body>
+<div>
+    <h1>Users:</h1>
+</div>
+<div>
+    <nobr>
+        <a th:href="@{/create}">Add a User</a> |
+        <a th:href="@{/users}">Back to Index</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listUser}">
+            <td><a th:href="@{/users/{id}(id=${user.id})}" th:utext="${user.id}">...</a></td>
+            <td><a th:href="@{/users/{id}(id=${user.id})}" th:utext="${user.firstName}">...</a></td>
+            <td><a th:href="@{/users/{id}(id=${user.id})}" th:utext="${user.lastName}">...</a></td>
+            <td th:utext="${user.email}">...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error">
+    ...
+</div>
+</body>
+</html>
