@@ -35,7 +35,7 @@ public class AppConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(env.getRequiredProperty("db.model.package"));
+        em.setPackagesToScan(env.getRequiredProperty("db.web.package"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(additionalProperties());
         return em;
@@ -54,7 +54,7 @@ public class AppConfig {
         dataSource.setTimeBetweenEvictionRunsMillis(Long.parseLong(env.getRequiredProperty("db.timeBetweenEvictionRunsMillis")));
         dataSource.setMinEvictableIdleTimeMillis(Long.parseLong(env.getRequiredProperty("db.minEvictableIdleTimeMillis")));
         dataSource.setTestOnBorrow(Boolean.parseBoolean(env.getRequiredProperty("db.testOnBorrow")));
-        dataSource.setValidationQuery(env.getRequiredProperty("db.validationQuery"));
+        dataSource.setValidationQuery(env.getRequiredProperty("db.validatorQuery"));
         return dataSource;
     }
 

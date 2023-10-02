@@ -1,7 +1,6 @@
 package web.model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -10,76 +9,55 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
-    private String firstName;
-
-    @Column(name = "last_name")
+    @Column(name ="name", nullable = false)
+    private String name;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+    @Column(name = "age", nullable = false)
+    private int age;
 
-    @Column(name = "email")
-    private String email;
 
-    public User() {}
 
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
+    public User() {
+
+    }
+
+    public User(Long id, String name, String lastName, int age) {
+        this.id = id;
+        this.name = name;
         this.lastName = lastName;
-        this.email = email;
+        this.age = age;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getName() {
+        return name;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email);
+    public void setAge(int age) {
+        this.age = age;
     }
 }
