@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All Users</title>
 </head>
 <body>
+<h2>All Users</h2>
 <table>
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Lastname</th>
-
-
+        <th>Last_Name</th>
+        <th>Age</th>
+        <th>Option</th>
     </tr>
+    <div th:each="users : ${user}">
+        <tr>
+            <td>
+                <h th:text="${users.getId()}"></h>
+            </td>
+            <td>
+                <h th:text="${users.getName()}"></h>
+            </td>
+            <td>
+                <h th:text="${users.getLastName()}"></h>
+            </td>
+            <td>
+                <h th:text="${users.getAge()}"></h>
+            </td>
+            <td>
+                <a th:href="@{/{id}/edit(id=${users.getId()})}">Edit</a>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/{id}(id=${users.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
 
-
-    <tr th:each="user: ${list}">
-        <td th:text="${user.getId()}">id</td>
-        <td th:text="${user.getName()}">models</td>
-        <td th:text="${user.getLastName()}">series</td>
-        <td>
-            <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
-                <input type="submit" value="Delete"/>
-            </form>
-        </td>
-
-        <td>
-            <form th:method="GET" th:action="@{/{id}/edit (id=${user.getId()})}">
-                <input type="submit" value="Update">
-            </form>
-        </td>
-
-    </tr>
+    </div>
 </table>
-<br>
-<input type="button" value="add" onclick="window.location.href = 'addNewUser'">
+<br/>
+<hr/>
+
+<a href="/new">Add</a>
+
 </body>
 </html>

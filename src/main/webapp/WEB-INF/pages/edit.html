@@ -1,40 +1,25 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit the User</title>
-
+    <title>Update User</title>
 </head>
 <body>
-<h1>Edit the User</h1>
-<a th:href="@{/users}">Back to User List</a>
-<br/><br/>
+<h2>Update User</h2>
 
-<form method="post" th:action="@{/edit/{id}(id=${user.id})}" th:object="${user}">
-    <div th:if="${user}">
-        <table>
-            <tr th:if="${user.id}">
-                <td>ID:</td>
-                <td th:utext="${user.id}">...</td>
-            </tr>
-            <tr>
-                <td><label for="firstName">First Name</label></td>
-                <td><input th:type="text" th:field="${user.firstName}" id="firstName"/></td>
-            </tr>
-            <tr>
-                <td><label for="lastName">Last Name</label></td>
-                <td><input th:type="text" th:field="${user.lastName}" id="lastName"/></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email</label></td>
-                <td><input th:type="text" th:field="${user.email}" id="email"/></td>
-            </tr>
-        </table>
-    </div>
+<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br><br>
+    <label for="lastName">Last_Name</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <br><br>
+    <label for="age">Age</label>
+    <input type="text" th:field="*{age}" id="age">
+    <br><br>
+    <br/>
     <input type="submit" value="Update"/>
 </form>
-<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error">
-    ...
-</div>
+
 </body>
 </html>
