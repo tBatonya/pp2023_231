@@ -1,5 +1,9 @@
 package web.entity;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -11,11 +15,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name ="name", nullable = false)
+    @NotEmpty(message = "Name shouldn't be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
     @Column(name = "last_name", nullable = false)
+
+    @NotEmpty(message = "Lastname shouldn't be empty")
+    @Size(min = 2, max = 30, message = "Lastname should be between 2 and 30 characters")
     private String lastName;
     @Column(name = "age", nullable = false)
+    @Min(value = 0, message = "Age should be greater than 0")
     private int age;
 
 
